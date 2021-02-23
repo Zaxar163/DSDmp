@@ -1,0 +1,34 @@
+plugins {
+	id 'java'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.javacord:javacord:3.1.2'
+	implementation 'org.kamranzafar:jtar:2.3'
+	implementation 'com.google.code.gson:gson:2.8.6'
+}
+
+jar {
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	} {
+		exclude "META-INF/*.SF"
+		exclude "META-INF/*.DSA"
+		exclude "META-INF/*.RSA"
+		exclude "META-INF/*"
+		exclude "module-info.class*"
+		exclude "LICENSE.txt"
+	}
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	manifest.attributes("Main-Class": "ru.zaxar163.dsdmp.run.HelloClass")
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+	options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+	options.incremental = true // one flag, and things will get MUCH faster    
+}
