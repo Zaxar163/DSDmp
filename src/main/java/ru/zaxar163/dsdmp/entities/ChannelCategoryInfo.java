@@ -5,9 +5,8 @@ import java.util.stream.Collectors;
 
 import org.javacord.api.entity.channel.ChannelCategory;
 
-public class ChannelCategoryInfo {
+public class ChannelCategoryInfo extends DateId {
 	public String name;
-	public long date, id;
 	public int position;
 	public List<Long> channels;
 

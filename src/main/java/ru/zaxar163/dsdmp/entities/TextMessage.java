@@ -9,14 +9,12 @@ import java.util.stream.Collectors;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.MessageAuthor;
 
-public class TextMessage {
+public class TextMessage extends DateId {
 	public List<Attachment> attachments;
 	public Map<String, Integer> reactions;
 	public long authorId;
 	public String content;
-	public long date;
 	public long modified; // -1 if is not modified
-	public long id;
 	public boolean tts;
 	public boolean pinned;
 

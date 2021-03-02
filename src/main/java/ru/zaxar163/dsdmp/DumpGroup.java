@@ -5,25 +5,24 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import org.javacord.api.DiscordApi;
-import org.javacord.api.entity.channel.PrivateChannel;
+import org.javacord.api.entity.channel.GroupChannel;
 
 import com.google.gson.Gson;
 
-import ru.zaxar163.dsdmp.entities.DumpedPrivateChannel;
+import ru.zaxar163.dsdmp.entities.DumpedGroupChannel;
 import ru.zaxar163.dsdmp.entities.DumpedTextChannel;
 import ru.zaxar163.dsdmp.entities.UserCache;
 import ru.zaxar163.dsdmp.entities.UserInfo;
 import ru.zaxar163.dsdmp.util.IOHelper;
 
-public class DumpUser extends Dump<PrivateChannel, DiscordApi, UserInfo> {
-
-	public DumpUser(Gson gson, int messageRate, long delayMillis) {
-		super(DumpedPrivateChannel.class, gson, messageRate, delayMillis);
+public class DumpGroup extends Dump<GroupChannel, DiscordApi, UserInfo> {
+	public DumpGroup(Gson gson, int messageRate, long delayMillis) {
+		super(DumpedGroupChannel.class, gson, messageRate, delayMillis);
 	}
 
 	@Override
-	protected Iterable<PrivateChannel> iterateOver(DiscordApi from) {
-		return from.getPrivateChannels();
+	protected Iterable<GroupChannel> iterateOver(DiscordApi from) {
+		return from.getGroupChannels();
 	}
 
 	@Override
@@ -39,7 +38,8 @@ public class DumpUser extends Dump<PrivateChannel, DiscordApi, UserInfo> {
 	}
 
 	@Override
-	protected DumpedTextChannel textChannel(PrivateChannel from, UserCache optional) {
-		return optional == null ? new DumpedPrivateChannel(from) : new DumpedPrivateChannel(from, optional);
+	protected DumpedTextChannel textChannel(GroupChannel from, UserCache optional) {
+		return optional == null ? new DumpedGroupChannel(from) : new DumpedGroupChannel(from, optional);
 	}
+
 }

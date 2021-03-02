@@ -2,9 +2,7 @@ package ru.zaxar163.dsdmp.entities;
 
 import org.javacord.api.entity.message.MessageAttachment;
 
-public class Attachment {
-	public long date;
-	public long id;
+public class Attachment extends DateId {
 	public boolean isImage;
 	public boolean isSpoiler;
 	public String name;
