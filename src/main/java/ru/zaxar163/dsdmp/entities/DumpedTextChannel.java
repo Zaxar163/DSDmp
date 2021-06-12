@@ -49,7 +49,7 @@ public class DumpedTextChannel extends CommonInfo {
 			while (msg.hasNext())
 				messages.add(new TextMessage(msg.next(), authorAcceptor));
 			m = ch.getMessagesBefore(messageRate, m.getOldestMessage().get()).join();
-			Thread.sleep(delayMillis);
+			if (delayMillis != 0) Thread.sleep(delayMillis);
 		}
 		// messages.sort(java.util.Comparator.comparingDouble(e -> e.date)); not needed
 		((ArrayList<TextMessage>) messages).trimToSize();

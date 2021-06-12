@@ -11,8 +11,8 @@ public class ServerInfo extends CommonInfo {
 	public static class RoleSerialized {
 		public List<Long> users;
 		public String name;
-		public long id;
-		public int position, allowed, denied;
+		public long id, allowed, denied;
+		public int position;
 
 		public RoleSerialized() {
 		}
